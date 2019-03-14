@@ -10,11 +10,20 @@
         <module name="game-core" />
         <module name="game-db" />
         <module name="game-gate" />
-        <module name="game-log" />
+        <module name="gameconfig" />
         <module name="gamecore" />
         <module name="gamedb" />
         <module name="gamegate" />
       </profile>
+      <profile name="Annotation profile for WorldGame" enabled="true">
+        <sourceOutputDir name="../gaem-log/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../gaem-log/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="game-log" />
+      </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="game-log" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>

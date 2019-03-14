@@ -12,6 +12,7 @@
         <module>game-db</module>
         <module>game-gate</module>
         <module>gaem-log</module>
+        <module>game-config</module>
     </modules>
     <packaging>pom</packaging>
 
