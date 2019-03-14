@@ -7,6 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="gaemlog" />
+        <module name="game-core" />
+        <module name="game-db" />
+        <module name="game-gate" />
+        <module name="game-log" />
         <module name="gamecore" />
         <module name="gamedb" />
         <module name="gamegate" />
