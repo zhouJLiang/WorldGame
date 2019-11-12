@@ -1,0 +1,65 @@
+spring:
+  application:
+    name: microservice-eureka-server-ha
+---
+spring:
+  profiles: peer1
+server:
+  port: 8671
+eureka:
+  instance:
+    hostname: peer1
+    instance-id: ${spring.application.name}:${server.port}:@project.version@
+  client:
+    service-url:
+      defaultZone: http://localhost:8672/eureka,http://localhost:8671/eureka
+
+---
+spring:
+  profiles: peer2
+server:
+  port: 8672
+eureka:
+  instance:
+    #服务注册中心实例的主机名
+    hostname: peer2
+    #自定义实例编号
+    instance-id: ${spring.application.name}:${server.port}:@project.version@
+  client:
+    service-url:
+      defaultZone: http://localhost:8671/eureka,http://localhost:8672/eureka
+#      defaultZone: http://peer1:8671/eureka
+#  1.配置host文件  模拟域名映射ip   比如我们通过http://peer1:8081/user  访问 实际上是访问peer1对应的ip  如http://127.0.0.1:8081/user
+##  host文件在哪儿自行百度
+##  127.0.0.1 peer1
+#  127.0.0.1 peer2
+# 上述情况如果依旧没有凑效 那就添加下面的东西试试（虽然默认的本省就是开启的）
+#  eureka.client.register-with-eureka=true
+#  eureka.client.fetch-registry=true
+---
+server:
+     port: 8673
+eureka:
+  instance:
+    hostname: producter-service
+    instance-id: ${spring.application.name}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://localhost:8671/eureka
+spring:
+  application:
+    name: producter-service
+  profiles: producter
+---
+spring:
+     profiles: consumer
+     application:
+       name: consumer-service
+server:
+  port: 8674
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8671/eureka,http://localhost:8672/eureka
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
